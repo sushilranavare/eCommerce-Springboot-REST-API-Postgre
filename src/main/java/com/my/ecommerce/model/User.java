@@ -1,0 +1,23 @@
+package com.my.ecommerce.model;
+
+import jakarta.persistence.*;
+import lombok.Data; // Using Lombok to avoid writing getters/setters manually
+
+@Entity
+@Table(name = "users")
+@Data // Generates Getters, Setters, toString, etc.
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+}

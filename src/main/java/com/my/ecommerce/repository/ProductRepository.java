@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    // This empty interface gives you all the magic methods like save(), findAll(), etc.
+
 }

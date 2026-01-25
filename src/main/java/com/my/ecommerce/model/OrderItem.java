@@ -1,6 +1,7 @@
 package com.my.ecommerce.model; // Make sure this matches your package structure
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Entity
@@ -14,6 +15,7 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
+    @JsonIgnore
     private Order order;  // This links back to the Order class
 
     @ManyToOne

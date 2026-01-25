@@ -17,7 +17,7 @@ function fetchProducts() {
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
                     <p><strong>$${product.price}</strong></p>
-                    <button class="btn" onclick="addToCart(${product.id})">Add to Cart</button>
+                    <button class="btn" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">Add to Cart</button>
                 `;
                 container.appendChild(card);
             });
@@ -25,7 +25,17 @@ function fetchProducts() {
         .catch(error => console.error('Error loading products:', error));
 }
 
-function addToCart(productId) {
-    console.log("Added product " + productId + " to cart");
-    alert("Item added to cart! (Cart logic coming soon)");
+function addToCart(id, name, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Check if item already exists
+    const existingItem = cart.find(item => item.id === id);
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ id, name, price, quantity: 1 });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(name + " added to cart!");
 }

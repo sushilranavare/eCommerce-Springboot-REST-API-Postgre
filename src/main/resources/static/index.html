@@ -12,6 +12,11 @@
         .btn { background-color: #28a745; color: white; padding: 10px; border: none; cursor: pointer; }
     </style>
 </head>
+<nav style="margin-bottom: 20px;">
+    <a href="cart.html" class="btn">View Cart</a>
+    <a href="orders.html" class="btn" style="background-color: #6c757d;">My Orders</a>
+    <a href="login.html" class="btn" style="background-color: #dc3545;" onclick="localStorage.removeItem('user')">Logout</a>
+</nav>
 <body>
 <h1>Our Products</h1>
 <div id="product-list" class="product-grid">

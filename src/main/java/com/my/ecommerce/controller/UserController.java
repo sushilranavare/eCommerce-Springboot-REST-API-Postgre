@@ -32,4 +32,19 @@ public class UserController {
         }
         return ResponseEntity.status(401).body("Invalid username or password");
     }
+    // This is Endpoint to handle Google Login
+    @PostMapping("/google-login")
+    public ResponseEntity<?> googleLogin(@RequestBody java.util.Map<String, String> payload) {
+        String email = payload.get("email");
+        String name = payload.get("name");
+
+        if (email == null || name == null) {
+            return ResponseEntity.badRequest().body("Invalid Google Data");
+        }
+
+        // Call the service method we just wrote
+        return ResponseEntity.ok(userService.loginWithGoogle(email, name));
+    }
+
 }
+

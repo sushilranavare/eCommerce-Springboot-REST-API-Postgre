@@ -31,4 +31,25 @@ public class UserService {
         }
         return null; // Return null if login fails
     }
+
+
+//  this  method for Google Login
+public User loginWithGoogle(String email, String name) {
+    // this Checks if a user with this email already exists
+    Optional<User> existingUser = userRepository.findByEmail(email);
+
+    if (existingUser.isPresent()) {
+        return existingUser.get(); // User exists, return them
+    } else {
+        // If User is new! Register them automatically
+        User newUser = new User();
+        newUser.setUsername(name); // Use their Google name
+        newUser.setEmail(email);
+        newUser.setPassword("GOOGLE_AUTH_USER"); // Dummy password
+        return userRepository.save(newUser);
+    }
 }
+}
+
+
+
